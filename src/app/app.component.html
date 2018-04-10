@@ -30,7 +30,10 @@
   <div>
     <h1> Relatório Estatatístico</h1>
     <p class="alert alert-info">Informações estatistícas relacionadas as ocorrências cadastradas.
-    <button type="button" class="close btnExibir" data-dismiss="alert" (click)="exibir_estatisticas()"> {{exibir_label}}</button>
+    <button type="button" class="close btnExibir" data-dismiss="alert" (click)="exibir_estatisticas()">
+      <i class="fa fa-eye" *ngIf="!(exibir_ok)"></i>
+      <i class="fa fa-eye-slash" *ngIf="exibir_ok"></i>
+    </button>
     </p>
     <table class="table table-sm table-hover table-bordered" *ngIf="exibir_ok">
       <thead class="thead-light">
