@@ -89,15 +89,15 @@
       <tbody>
       <tr>
         <td>Data inicial: </td>
-        <td> <input type="date" name="dataInicial" class="form-control" [(ngModel)]="dataInicial"></td>
+        <td> <input type="date" name="dataInicial" class="form-control" (change)="pesquisaIntervalos()" [(ngModel)]="dataInicial"></td>
       </tr>
       <tr *ngIf="dataInicial != null">
         <td>Data final: </td>
-        <td> <input type="date" name="dataFinal" class="form-control" [(ngModel)]="dataFinal"></td>
+        <td> <input type="date" name="dataFinal" class="form-control" (change)="pesquisaIntervalos()" [(ngModel)]="dataFinal"></td>
       </tr>
       <tr *ngIf="dataFinal != null">
-        <td>Quantidade do intervalo: </td>
-        <td *ngIf="pesquisaIntervalos()">{{qtdIntervalo}}</td>
+        <td>Quantidade de ocorrências no intervalo: </td>
+        <td>{{qtdIntervalo}}</td>
       </tr>
       </tbody>
     </table>
