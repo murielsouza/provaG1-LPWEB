@@ -28,11 +28,11 @@
     </tbody>
   </table>
   <div>
-    <h1> Relatório Estatatístico</h1>
-    <p class="alert alert-info">Informações estatistícas relacionadas as ocorrências cadastradas.
+    <h1> Estatísticas</h1>
+    <p class="alert alert-info">Relatório estatístico relacionados as ocorrências cadastradas.
     <button type="button" class="close btnExibir" data-dismiss="alert" (click)="exibir_estatisticas()">
-      <i class="fa fa-eye" *ngIf="!(exibir_ok)"></i>
-      <i class="fa fa-eye-slash" *ngIf="exibir_ok"></i>
+      <i class="fa fa-eye" *ngIf="!(exibir_ok)" title="exibir"></i>
+      <i class="fa fa-eye-slash" *ngIf="exibir_ok" title="ocultar"></i>
     </button>
     </p>
     <table class="table table-sm table-hover table-bordered" *ngIf="exibir_ok">
@@ -75,6 +75,29 @@
       <tr [class.table-danger]="relacao_ocorrencias >=0 " [class.table-success]="relacao_ocorrencias < 0 " >
         <td>março-abril </td>
         <td>{{relacao_ocorrencias}}%</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <table class="table table-sm table-bordered" *ngIf="exibir_ok">
+      <thead class="thead-dark">
+      <tr>
+        <th> Busca por intervalo de datas (DATA)</th>
+        <th>Formulário/Resultado</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Data inicial: </td>
+        <td> <input type="date" name="dataInicial" class="form-control" [(ngModel)]="dataInicial"></td>
+      </tr>
+      <tr *ngIf="dataInicial != null">
+        <td>Data final: </td>
+        <td> <input type="date" name="dataFinal" class="form-control" [(ngModel)]="dataFinal"></td>
+      </tr>
+      <tr *ngIf="dataFinal != null">
+        <td>Quantidade do intervalo: </td>
+        <td *ngIf="pesquisaIntervalos()">{{qtdIntervalo}}</td>
       </tr>
       </tbody>
     </table>

@@ -21,6 +21,9 @@ export class AppComponent {
     salvar_not_ok = false;
     exibir_ok = false;
     alunoPesquisa = null;
+    dataInicial = null;
+    dataFinal = null;
+    qtdIntervalo = 0;
 
     contadores = [0, 0, 0, 0];
     porcentagens = [0, 0, 0, 0];
@@ -39,8 +42,10 @@ export class AppComponent {
               new Aluno(111106110, 'Ismael P. Torres Jr.'),
               new Aluno(19282443, 'Jackson G. de Souza')];
 
-    ocorrencias = [new Ocorrencia(this.alunos[0], '2018-03-05', 0, true, 'Ismael P. T. Júnior', 'Decepção...'  ),
-                   new Ocorrencia(this.alunos[1], '2018-03-10', 1, false, null, '...')];
+    ocorrencias = [new Ocorrencia(this.alunos[0], '2018-03-05', 1, true, 'Ismael P. T. Júnior', 'Decepção...'  ),
+                   new Ocorrencia(this.alunos[1], '2018-03-10', 1, false, null, '...'),
+                   new Ocorrencia(this.alunos[3], '2018-03-08', 3, true, 'Mom Gomes de Souza', '...'),
+                   new Ocorrencia(this.alunos[2], '2018-02-04', 3, false, null, '...' )];
 
     constructor() {
         this.invocar_cache();
@@ -66,7 +71,22 @@ export class AppComponent {
             this.alunoPesquisa = null;
             this.selecionado = false;
     }
-
+pesquisaIntervalos(){
+    const inicial = this.dataInicial.split('-', 3);
+    const final = this.dataFinal.split('-',3);
+    this.qtdIntervalo = 0;
+    for (var i = 0; i < this.ocorrencias.length; i++) {
+        const data = this.ocorrencias[i].data.split('-',3);
+        if((parseInt(data[2]) >=  parseInt(inicial[2])) && (parseInt(data[2]) <=  parseInt(final[2]))){
+            if((parseInt(data[1]) >=  parseInt(inicial[1])) && (parseInt(data[1]) <=  parseInt(final[1]))){
+                if((parseInt(data[0]) >=  parseInt(inicial[0])) && (parseInt(data[0]) <=  parseInt(final[0]))){
+                    this.qtdIntervalo++;
+                }
+            }
+        }
+    }
+    return true;
+}
     selecionar(status) {
         this.selecionado = status;
     }
