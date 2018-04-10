@@ -20,7 +20,6 @@ export class AppComponent {
     salvar_ok = false;
     salvar_not_ok = false;
     exibir_ok = false;
-    exibir_label = 'exibir';
     alunoPesquisa = null;
 
     contadores = [0, 0, 0, 0];
@@ -116,11 +115,9 @@ export class AppComponent {
     exibir_estatisticas() {
         if (this.exibir_ok) {
             this.exibir_ok = false;
-            this.exibir_label = 'exibir';
         }
         else {
             this.exibir_ok = true;
-            this.exibir_label = 'ocultar';
         }
     }
 
