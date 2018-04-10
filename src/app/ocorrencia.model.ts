@@ -1,5 +1,4 @@
-import {Aluno} from '../../../../../Desktop/G1 - LPWEB/G1-app/src/app/aluno.model';
-import {TipoDeOcorrencia} from '../../../../../Desktop/G1 - LPWEB/G1-app/src/app/tipo-de-ocorrencia.model';
+import {Aluno} from './aluno.model';
 
 export class Ocorrencia {
     aluno: Aluno;

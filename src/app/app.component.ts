@@ -40,12 +40,14 @@ export class AppComponent {
     alunos = [new Aluno(118341210, 'Luara A. da Silva'),
               new Aluno(120895810, 'Muriel S. da Cruz'),
               new Aluno(111106110, 'Ismael P. Torres Jr.'),
-              new Aluno(19282443, 'Jackson G. de Souza')];
+              new Aluno(19282443, 'Jackson G. de Souza'),
+              new Aluno(106025010, 'Vinicius O. Cavichioli')];
 
     ocorrencias = [new Ocorrencia(this.alunos[0], '2018-03-05', 1, true, 'Ismael P. T. Júnior', 'Decepção...'  ),
                    new Ocorrencia(this.alunos[1], '2018-03-10', 1, false, null, '...'),
                    new Ocorrencia(this.alunos[3], '2018-03-08', 3, true, 'Mom Gomes de Souza', '...'),
-                   new Ocorrencia(this.alunos[2], '2018-02-04', 3, false, null, '...' )];
+                   new Ocorrencia(this.alunos[2], '2018-02-04', 3, false, null, '...' ),
+                   new Ocorrencia(this.alunos[4], '2018-05-03', 2, true, 'Milton O. Cavichioli', '...')];
 
     constructor() {
         this.invocar_cache();
@@ -74,8 +76,11 @@ export class AppComponent {
 pesquisaIntervalos(){
     const inicial = this.dataInicial.split('-', 3);
     const final = this.dataFinal.split('-',3);
-    console.log(inicial);
     this.qtdIntervalo = 0;
+
+    console.log(inicial[0])
+    console.log(final[0]);
+
     for (var i = 0; i < this.ocorrencias.length; i++) {
         const data = this.ocorrencias[i].data.split('-',3);
         if((parseInt(data[0]) >=  parseInt(inicial[0])) && (parseInt(data[0]) <=  parseInt(final[0]))){ //comparando ano
