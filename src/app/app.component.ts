@@ -74,24 +74,17 @@ export class AppComponent {
             this.selecionado = false;
     }
 pesquisaIntervalos(){
-    const inicial = this.dataInicial.split('-', 3);
-    const final = this.dataFinal.split('-',3);
+    const inicial = new Date(this.dataInicial.split('-', 3));
+    const final = new Date(this.dataFinal.split('-',3));
     this.qtdIntervalo = 0;
-
-    console.log(inicial[0])
-    console.log(final[0]);
-
     for (var i = 0; i < this.ocorrencias.length; i++) {
-        const data = this.ocorrencias[i].data.split('-',3);
-        if((parseInt(data[0]) >=  parseInt(inicial[0])) && (parseInt(data[0]) <=  parseInt(final[0]))){ //comparando ano
-            if((parseInt(data[1]) >=  parseInt(inicial[1])) && (parseInt(data[1]) <=  parseInt(final[1]))){ //comparando mês
-                if((parseInt(data[2]) >=  parseInt(inicial[2])) && (parseInt(data[2]) <=  parseInt(final[2]))){ //comparando dia
-                    this.qtdIntervalo++;
-                }
-            }
+        const dataOcorrencia = new Date(this.ocorrencias[i].data.split('-',3));
+        if(dataOcorrencia >= inicial && dataOcorrencia <= final){
+            this.qtdIntervalo++;
         }
     }
 }
+
     selecionar(status) {
         this.selecionado = status;
     }
