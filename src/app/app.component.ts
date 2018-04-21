@@ -32,58 +32,58 @@ export class AppComponent {
     relacao_ocorrencias = 0;
 
     tipos = [new TipoDeOcorrencia(0, 'indisciplina em sala de aula'),
-             new TipoDeOcorrencia(1, 'comportamento inadequado com colegas'),
-             new TipoDeOcorrencia(2, 'baixo índice de rendimento'),
-             new TipoDeOcorrencia(3, 'indicação de atenção por assunto familiar, psicológico e/ou social')
-            ];
+        new TipoDeOcorrencia(1, 'comportamento inadequado com colegas'),
+        new TipoDeOcorrencia(2, 'baixo índice de rendimento'),
+        new TipoDeOcorrencia(3, 'indicação de atenção por assunto familiar, psicológico e/ou social')
+    ];
 
     alunos = [new Aluno(118341210, 'Luara A. da Silva'),
-              new Aluno(120895810, 'Muriel S. da Cruz'),
-              new Aluno(111106110, 'Ismael P. Torres Jr.'),
-              new Aluno(19282443, 'Jackson G. de Souza'),
-              new Aluno(106025010, 'Vinicius O. Cavichioli')];
+        new Aluno(120895810, 'Muriel S. da Cruz'),
+        new Aluno(111106110, 'Ismael P. Torres Jr.'),
+        new Aluno(19282443, 'Jackson G. de Souza'),
+        new Aluno(106025010, 'Vinicius O. Cavichioli')];
 
-    ocorrencias = [new Ocorrencia(this.alunos[0], '2018-03-05', 1, true, 'Ismael P. T. Júnior', 'Decepção...'  ),
-                   new Ocorrencia(this.alunos[1], '2018-03-10', 1, false, null, '...'),
-                   new Ocorrencia(this.alunos[3], '2018-03-08', 3, true, 'Mom Gomes de Souza', '...'),
-                   new Ocorrencia(this.alunos[2], '2018-02-04', 3, false, null, '...' ),
-                   new Ocorrencia(this.alunos[4], '2018-05-03', 2, true, 'Milton O. Cavichioli', '...')];
+    ocorrencias = [new Ocorrencia(this.alunos[0], new Date(2018, 3, 5), 1, true, 'Ismael P. T. Júnior', 'Decepção...'),
+        new Ocorrencia(this.alunos[1], new Date(2018, 2, 30), 1, false, null, '...'),
+        new Ocorrencia(this.alunos[3], new Date(2018, 3, 15), 3, true, 'Mom Gomes de Souza', '...'),
+        new Ocorrencia(this.alunos[2], new Date(2018, 4, 19), 3, false, null, '...'),
+        new Ocorrencia(this.alunos[4], new Date(2018, 3, 8), 2, true, 'Milton O. Cavichioli', '...')];
 
     constructor() {
-        this.invocar_cache();
+        //this.invocar_cache();
         this.atualizarEstatisticas();
     }
 
     salvar() {
 
-            const o = new Ocorrencia(this.alunoPesquisa, this.data, this.tipo, this.comparecimento, this.responsavel, this.observacao);
-            this.ocorrencias.push(o);
-            this.armazenar_cache(o);
-            this.salvar_ok = true;
-            this.atualizarEstatisticas();
+        const o = new Ocorrencia(this.alunoPesquisa, new Date(this.data.split('-', 3)), this.tipo, this.comparecimento, this.responsavel, this.observacao);
+        this.ocorrencias.push(o);
+        this.armazenar_cache();
+        this.salvar_ok = true;
+        this.atualizarEstatisticas();
 
 
-
-            this.matricula = null;
-            this.nome = null;
-            this.tipo = null;
-            this.comparecimento = null;
-            this.responsavel = null;
-            this.observacao = null;
-            this.alunoPesquisa = null;
-            this.selecionado = false;
+        this.matricula = null;
+        this.nome = null;
+        this.tipo = null;
+        this.comparecimento = null;
+        this.responsavel = null;
+        this.observacao = null;
+        this.alunoPesquisa = null;
+        this.selecionado = false;
     }
-pesquisaIntervalos(){
-    const inicial = new Date(this.dataInicial.split('-', 3));
-    const final = new Date(this.dataFinal.split('-',3));
-    this.qtdIntervalo = 0;
-    for (var i = 0; i < this.ocorrencias.length; i++) {
-        const dataOcorrencia = new Date(this.ocorrencias[i].data.split('-',3));
-        if(dataOcorrencia >= inicial && dataOcorrencia <= final){
-            this.qtdIntervalo++;
+
+    pesquisaIntervalos() {
+        const inicial = new Date(this.dataInicial.split('-', 3));
+        const final = new Date(this.dataFinal.split('-', 3));
+        this.qtdIntervalo = 0;
+        for (var i = 0; i < this.ocorrencias.length; i++) {
+            const dataOcorrencia = this.ocorrencias[i].data;
+            if (dataOcorrencia >= inicial && dataOcorrencia <= final) {
+                this.qtdIntervalo++;
+            }
         }
     }
-}
 
     selecionar(status) {
         this.selecionado = status;
@@ -98,16 +98,17 @@ pesquisaIntervalos(){
         this.observacao = null;
         this.alunoPesquisa = null;
     }
+
     verificarAluno(matricula) {
-      for(let a of this.alunos) {
-        if(a.matricula == matricula) {
-          this.alunoPesquisa = a;
-          this.salvar_not_ok = false;
-          return true;
+        for (let a of this.alunos) {
+            if (a.matricula == matricula) {
+                this.alunoPesquisa = a;
+                this.salvar_not_ok = false;
+                return true;
+            }
         }
-      }
-      this.salvar_not_ok = true;
-      return false;
+        this.salvar_not_ok = true;
+        return false;
     }
 
     atualizarEstatisticas() {
@@ -116,10 +117,10 @@ pesquisaIntervalos(){
         this.cont_marco = 0;
         for (var i = 0; i < this.ocorrencias.length; i++) {
             this.contadores[this.ocorrencias[i].tipo]++;
-            if (this.ocorrencias[i].data.indexOf("-04-") != -1) {
+            if (this.ocorrencias[i].data.getMonth() == 4) {
                 this.cont_abril++;
             }
-            if (this.ocorrencias[i].data.indexOf('-03-') != -1) {
+            if (this.ocorrencias[i].data.getMonth() == 3) {
                 this.cont_marco++;
             }
         }
@@ -130,6 +131,7 @@ pesquisaIntervalos(){
             this.porcentagens[i] = this.contadores[i] / this.ocorrencias.length * 100;
         }
     }
+
     exibir_estatisticas() {
         if (this.exibir_ok) {
             this.exibir_ok = false;
@@ -139,14 +141,33 @@ pesquisaIntervalos(){
         }
     }
 
-    armazenar_cache(ocorrencia) {
-        localStorage.setItem(((Math.random()*1000)+1).toString(), JSON.stringify(ocorrencia));
+    armazenar_cache() {
+        localStorage.setItem('ocorrencias', JSON.stringify(this.ocorrencias));
+        localStorage.setItem('alunos', JSON.stringify(this.alunos));
+        localStorage.setItem('tipoOcorrencias', JSON.stringify(this.tipos));
     }
+
     invocar_cache() {
-        for(const i in localStorage) {
-            const o = JSON.parse(localStorage.getItem(i));
-            if(o != undefined){
-                this.ocorrencias.push(o);
+        for (const i in localStorage) {
+            alert(i);
+            const obj = JSON.parse(localStorage.getItem(i));
+            if (obj != undefined) {
+                if (obj[0] instanceof Ocorrencia) {
+                    for (let o of obj) {
+                        o.data = new Date(o.data);
+                        this.ocorrencias.push(o);
+                    }
+                }
+                if (obj[0] instanceof Aluno) {
+                    for (let a of obj) {
+                        this.alunos.push(a);
+                    }
+                }
+                if (obj[0] instanceof Aluno) {
+                    for (let t of obj) {
+                        this.tipos.push(t);
+                    }
+                }
             }
         }
     }

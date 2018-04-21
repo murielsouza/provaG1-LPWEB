@@ -2,13 +2,13 @@ import {Aluno} from './aluno.model';
 
 export class Ocorrencia {
     aluno: Aluno;
-    data: string;
+    data: Date;
     compareceram: boolean;
     responsavel: string;
     tipo: number;
     observação: string;
 
-    constructor(aluno: Aluno, data: string, tipo: number, compareceram: boolean, responsavel?: string, observacao?: string){
+    constructor(aluno: Aluno, data: Date, tipo: number, compareceram: boolean, responsavel?: string, observacao?: string){
         this.aluno = aluno;
         this.data = data;
         this.tipo = tipo;
