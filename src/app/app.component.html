@@ -20,7 +20,7 @@
     </thead>
     <tbody>
     <tr *ngFor= "let ocorrencia of ocorrencias">
-      <td>{{ocorrencia.data}} </td>
+      <td>{{ocorrencia.data.toLocaleDateString()}} </td>
       <td>{{ocorrencia.aluno.matricula}}</td>
       <td>{{ocorrencia.aluno.nome}}</td>
       <td>{{tipos[ocorrencia.tipo].nome}}</td>

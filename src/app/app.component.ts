@@ -44,7 +44,7 @@ export class AppComponent {
         new Aluno(106025010, 'Vinicius O. Cavichioli')];
 
     ocorrencias = [new Ocorrencia(this.alunos[0], new Date(2018, 3, 5), 1, true, 'Ismael P. T. Júnior', 'Decepção...'),
-        new Ocorrencia(this.alunos[1], new Date(2018, 2, 30), 1, false, null, '...'),
+        new Ocorrencia(this.alunos[1], new Date(2018, 3, 30), 1, false, null, '...'),
         new Ocorrencia(this.alunos[3], new Date(2018, 3, 15), 3, true, 'Mom Gomes de Souza', '...'),
         new Ocorrencia(this.alunos[2], new Date(2018, 4, 19), 3, false, null, '...'),
         new Ocorrencia(this.alunos[4], new Date(2018, 3, 8), 2, true, 'Milton O. Cavichioli', '...')];
