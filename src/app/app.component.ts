@@ -43,14 +43,15 @@ export class AppComponent {
         new Aluno(19282443, 'Jackson G. de Souza'),
         new Aluno(106025010, 'Vinicius O. Cavichioli')];
 
-    ocorrencias = [new Ocorrencia(this.alunos[0], new Date(2018, 3, 5), 1, true, 'Ismael P. T. Júnior', 'Decepção...'),
-        new Ocorrencia(this.alunos[1], new Date(2018, 3, 30), 1, false, null, '...'),
-        new Ocorrencia(this.alunos[3], new Date(2018, 3, 15), 3, true, 'Mom Gomes de Souza', '...'),
-        new Ocorrencia(this.alunos[2], new Date(2018, 4, 19), 3, false, null, '...'),
-        new Ocorrencia(this.alunos[4], new Date(2018, 3, 8), 2, true, 'Milton O. Cavichioli', '...')];
+    ocorrencias = [new Ocorrencia(this.alunos[0], new Date(2018, 2, 12), 1, true, 'Ismael P. T. Júnior', 'Decepção...'),
+        new Ocorrencia(this.alunos[1], new Date(2018, 2, 30), 1, false, null, '...'),
+        new Ocorrencia(this.alunos[3], new Date(2018, 2, 15), 3, true, 'Mom Gomes de Souza', '...'),
+        new Ocorrencia(this.alunos[2], new Date(2018, 3, 19), 3, false, null, '...'),
+        new Ocorrencia(this.alunos[4], new Date(2018, 2, 8), 2, true, 'Milton O. Cavichioli', '...')];
 
     constructor() {
         //this.invocar_cache();
+        this.ocorrencias.sort((a, b) => a.data > b.data);
         this.atualizarEstatisticas();
     }
 
@@ -117,10 +118,10 @@ export class AppComponent {
         this.cont_marco = 0;
         for (var i = 0; i < this.ocorrencias.length; i++) {
             this.contadores[this.ocorrencias[i].tipo]++;
-            if (this.ocorrencias[i].data.getMonth() == 4) {
+            if (this.ocorrencias[i].data.getMonth() == 3) { //sempre -1 porque mês começa do zero em Javascript
                 this.cont_abril++;
             }
-            if (this.ocorrencias[i].data.getMonth() == 3) {
+            if (this.ocorrencias[i].data.getMonth() == 2) {
                 this.cont_marco++;
             }
         }
